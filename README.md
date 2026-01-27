@@ -8,10 +8,24 @@
 
 ## API Endpoints
 #### Posts
-Method,Endpoint,Description,Auth Required,Parameters / Body,Response Example
-GET,/posts,Get all posts with vote counts (paginated),No,"Query params: limit (default 10), skip (default 0), search (title substring)",List of posts with votes count
-GET,/post/{id},Get a single post by ID with vote count,No,Path param: id,Single post object with votes
-POST,/createpost,Create a new post,Yes,"json { ""title"": ""My Post"", ""content"": ""Post content"", ""published"": true }",Created post object
-DELETE,/post/{id},Delete a post (owner only),Yes,Path param: id,No content (204)
-PUT,/post/{id},Update a post (owner only),Yes,"Path param: id
-Body: partial update json { ""title"": ""Updated"", ""content"": ""...""}",Updated post object
+| Method | Endpoint | Description | Auth Required | Parameters / Body | Response Example |
+|--------|----------|-------------|---------------|-------------------|-------------------|
+| GET | `/posts` | Get all posts with vote counts (paginated) | No | Query params: `limit` (default 10), `skip` (default 0), `search` (title substring) | List of posts with votes count |
+| GET | `/post/{id}` | Get a single post by ID with vote count | No | Path param: `id` | Single post object with votes |
+| POST | `/createpost` | Create a new post | Yes | `json { "title": "My Post", "content": "Post content", "published": true }` | Created post object |
+| DELETE | `/post/{id}` | Delete a post (owner only) | Yes | Path param: `id` | No content (204) |
+| PUT | `/post/{id}` | Update a post (owner only) | Yes | Path param: `id`<br>Body: partial update json `{ "title": "Updated", "content": "..." }` | Updated post object |
+
+#### Login
+| Method | Endpoint | Description | Auth Required | Request Body Example | Response Example |
+|--------|----------|-------------|---------------|-------------------|-------------------|
+| POST | `/login` | Login and receive JWT access token | No | Form data:<br>`username: user@example.com`<br>`password: yourpassword` | `{"access_token": "eyJ...", "token_type": "bearer"}` |
+
+#### Users
+
+Here's the table for these two endpoints:
+
+| Method | Endpoint | Description | Auth Required | Request Body Example | Response Example |
+|--------|----------|-------------|---------------|-------------------|-------------------|
+| POST | `/createuser` | Create a new user | No | ```json  { "email": "user@example.com",  "password": "yourpassword"}``` | `{"id": 1, "email": "user@example.com", "created_at": "2023-10-15T12:00:00Z"}` |
+| GET | `/user/{id}` | Retrieve user by ID | No | — | `{"id": 1, "email": "user@example.com", "created_at": "2023-10-15T12:00:00Z"}` |
