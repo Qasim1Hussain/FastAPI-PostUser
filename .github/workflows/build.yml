@@ -1,0 +1,12 @@
+name: Build Code
+
+on: [push, pull_request]
+
+jobs:
+  jobs1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking repo
+        uses: actions/checkout@v2
+      - name: say hi
+        run: echo "Helloe world"
