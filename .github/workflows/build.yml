@@ -8,5 +8,11 @@ jobs:
     steps:
       - name: checking repo
         uses: actions/checkout@v2
-      - name: say hi
-        run: echo "Helloe world"
+      - name: Installing python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Update pip
+        run: python -m pipt install --upgrade pip
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
