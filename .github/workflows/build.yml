@@ -5,6 +5,17 @@ on: [push, pull_request]
 jobs:
   jobs1:
     runs-on: ubuntu-latest
+    environment:  # Will Look into testing env on Github Actions Secrets
+      testing
+    env:
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
     steps:
       - name: checking repo
         uses: actions/checkout@v2
