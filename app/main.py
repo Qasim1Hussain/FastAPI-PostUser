@@ -19,4 +19,4 @@ app.include_router(votes.router)
 
 @app.get('/')
 def hello():
-    return {"Message": "Hello User of new reload"}
+    return {"Message": "Hello User from Ubuntu Server"}

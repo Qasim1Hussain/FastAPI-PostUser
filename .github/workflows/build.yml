@@ -31,7 +31,7 @@ jobs:
           --health-retries 5
   
     steps:
-      - name: checking repo
+      - name: Checking in repo
         uses: actions/checkout@v2
       - name: Installing python
         uses: actions/setup-python@v2
@@ -56,6 +56,6 @@ jobs:
           password: ${{secrets.PASSWORD}}
           script: |
             cd app/src
-            git pull
+            git pull origin main
             echo ${{secrets.PASSWORD}} | sudo -S systemctl restart fastapilearn
             
