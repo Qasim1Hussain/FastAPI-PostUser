@@ -55,7 +55,9 @@ jobs:
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           script: |
-            cd app/src
+            cd /home/qasim/app/src
+            git fetch origin
+            git reset --hard origin/main
             git pull origin main
             echo ${{secrets.PASSWORD}} | sudo -S systemctl restart fastapilearn
             
