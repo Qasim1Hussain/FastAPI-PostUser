@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   jobs1:
     runs-on: ubuntu-latest
-    environment:  # Will Look into testing env on Github Actions Secrets
+    environment:  #  look into testing env on Github Actions Secrets
       testing
     env:
       DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
@@ -16,6 +16,20 @@ jobs:
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: ${{secrets.ALGORITHM}}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+
+    services: # Services are docker containers
+      postgres:
+        image: postgres
+        env: 
+          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+  
     steps:
       - name: checking repo
         uses: actions/checkout@v2
